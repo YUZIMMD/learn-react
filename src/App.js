@@ -6,9 +6,9 @@ class App extends Component {
   //状态，只能在类中使用，并且继承的是react中Component,用于改变组件内状态的值
   state ={
     persons:[
-      {name:'name1',count:1},
-      {name:'name2',count:2},
-      {name:'name3',count:3},
+      {id:1,name:'name1',count:1},
+      {id:2,name:'name2',count:2},
+      {id:3,name:'name3',count:3},
   ],
   otherState:'anything',
   showPersons:false
@@ -24,19 +24,37 @@ class App extends Component {
       ]
     })
   }
-  nameChangeHandler=(event)=>{
+  nameChangeHandler=(event,id)=>{
+    // 判断是否在数组中并且返回下标值
+    const personIndex = this.state.persons.findIndex(p=>{
+      return p.id === id;
+    }) 
+    // 获取数组中id等于这个的那个对象
+    const person = {...this.state.persons[personIndex]};
+    // 改变对象属性name
+    person.name = event.target.value;
+    // 获取全部的数组
+    const persons =[...this.state.persons];
+    // 替换其中id等于这个的那个对象
+    persons[personIndex]=person;
+    // 更新整个数组
     this.setState({
-      persons:[
-        {name:'name1',count:1},
-        {name:event.target.value,count:2},
-        {name:'name3',count:3},
-      ]
+      persons:persons
     })
   }
   toggleHandler=()=>{
     const doesShow = this.state.showPersons;
     this.setState({
       showPersons:!doesShow
+    })
+  }
+  deletePersonHandler(PersonIndex){
+    // const persons = this.state.persons;
+    // 用操作运算符接收数据
+    const persons = [...this.state.persons];
+    persons.splice(PersonIndex,1);
+    this.setState({
+      persons:persons
     })
   }
   render() {
@@ -50,8 +68,14 @@ class App extends Component {
     let persons = null;
     if(this.state.showPersons){
       persons = ( <div>
-        < Person myClick={this.switchNameHandler.bind(this,'miss')} name={this.state.persons[0].name} count={this.state.persons[0].count} />
-        < Person changed={this.nameChangeHandler} name={this.state.persons[1].name} count={this.state.persons[1].count} />
+        {/* 循环遍历 */}
+        {
+          this.state.persons.map((personn,index)=>{
+            return <Person changed={(event)=>this.nameChangeHandler(event,personn.id)} myClick={this.deletePersonHandler.bind(this,index)} name={personn.name} count={personn.count} key={personn.id} />
+          })
+        }
+        {/* < Person myClick={this.switchNameHandler.bind(this,'miss')} name={this.state.persons[0].name} count={this.state.persons[0].count} />
+        < Person changed={this.nameChangeHandler} name={this.state.persons[1].name} count={this.state.persons[1].count} /> */}
         </div>)
     }
     return (
