@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
+import Persons from '../component/Person/Persons/Persons';
 
 class App extends Component {
   //状态，只能在类中使用，并且继承的是react中Component,用于改变组件内状态的值
@@ -67,16 +67,17 @@ class App extends Component {
     }
     let persons = null;
     if(this.state.showPersons){
-      persons = ( <div>
-        {/* 循环遍历 */}
-        {
-          this.state.persons.map((personn,index)=>{
-            return <Person changed={(event)=>this.nameChangeHandler(event,personn.id)} myClick={this.deletePersonHandler.bind(this,index)} name={personn.name} count={personn.count} key={personn.id} />
-          })
-        }
-        {/* < Person myClick={this.switchNameHandler.bind(this,'miss')} name={this.state.persons[0].name} count={this.state.persons[0].count} />
-        < Person changed={this.nameChangeHandler} name={this.state.persons[1].name} count={this.state.persons[1].count} /> */}
-        </div>)
+      persons = <Persons/>
+      // ( <div>
+      //   {/* 循环遍历 */}
+      //   {
+      //     this.state.persons.map((personn,index)=>{
+      //       return <Person changed={(event)=>this.nameChangeHandler(event,personn.id)} myClick={this.deletePersonHandler.bind(this,index)} name={personn.name} count={personn.count} key={personn.id} />
+      //     })
+      //   }
+      //   {/* < Person myClick={this.switchNameHandler.bind(this,'miss')} name={this.state.persons[0].name} count={this.state.persons[0].count} />
+      //   < Person changed={this.nameChangeHandler} name={this.state.persons[1].name} count={this.state.persons[1].count} /> */}
+      //   </div>)
     }
     return (
       // jsx
