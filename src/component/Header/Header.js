@@ -9,7 +9,7 @@ import React from 'react';
       }
     return(
         <div>
-            <h1>1234</h1>
+            <h1>{props.appTile}</h1>
             {/* 如果给方法加()，方法会在加载的时候执行，不管有没有点击按钮 ，传参：1.箭头函数传参2.bind*/}
             {/* <button onClick={()=>this.switchNameHandler("dengyt")}>更改状态值</button> */}
             <button style={style} onClick={props.switchFun.bind(this,"dengyt")}>更改状态值</button>

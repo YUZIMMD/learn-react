@@ -87,7 +87,7 @@ class App extends Component {
         {/* <button style={style} onClick={this.switchNameHandler.bind(this,"dengyt")}>更改状态值</button> */}
         {/* <button style={style} onClick={this.toggleHandler}>内容切换</button> */}
         {/* 头部组件 */}
-        <MyHeader persons ={this.state.persons} clicked={this.toggleHandler} switchFun={this.switchNameHandler}/>
+        <MyHeader persons ={this.state.persons} clicked={this.toggleHandler} switchFun={this.switchNameHandler} appTile={this.props.title}/>
         {/* {
           this.state.showPersons?  <div>
           < Person myClick={this.switchNameHandler.bind(this,'miss')} name={this.state.persons[0].name} count={this.state.persons[0].count} />
