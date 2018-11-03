@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Persons from '../component/Persons/Persons';
-
+import MyHeader from '../component/Header/Header'
+// 有状态组件
 class App extends Component {
   //状态，只能在类中使用，并且继承的是react中Component,用于改变组件内状态的值
   state ={
@@ -58,13 +59,6 @@ class App extends Component {
     })
   }
   render() {
-    const style={
-      backgroundColor:'white',
-      font:'inherit',
-      border:'1px solid blue',
-      padding:'8px',
-      cursor:'pointer'
-    }
     let persons = null;
     if(this.state.showPersons){
      persons = <Persons 
@@ -87,11 +81,13 @@ class App extends Component {
       // jsx
       // jsx中定义类名：className,在jsx中有且只有一个根容器，有两个同级的根标签会报错
       <div className="App">
-        <h1>1234</h1>
+        {/* <h1>1234</h1> */}
         {/* 如果给方法加()，方法会在加载的时候执行，不管有没有点击按钮 ，传参：1.箭头函数传参2.bind*/}
         {/* <button onClick={()=>this.switchNameHandler("dengyt")}>更改状态值</button> */}
-        <button style={style} onClick={this.switchNameHandler.bind(this,"dengyt")}>更改状态值</button>
-        <button style={style} onClick={this.toggleHandler}>内容切换</button>
+        {/* <button style={style} onClick={this.switchNameHandler.bind(this,"dengyt")}>更改状态值</button> */}
+        {/* <button style={style} onClick={this.toggleHandler}>内容切换</button> */}
+        {/* 头部组件 */}
+        <MyHeader persons ={this.state.persons} clicked={this.toggleHandler} switchFun={this.switchNameHandler}/>
         {/* {
           this.state.showPersons?  <div>
           < Person myClick={this.switchNameHandler.bind(this,'miss')} name={this.state.persons[0].name} count={this.state.persons[0].count} />
