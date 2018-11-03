@@ -12,6 +12,24 @@ class Persons extends Component{
       componentDidMount(){
         console.log('8')
       }
+    //   更新组件生命周期钩子函数
+    // 状态改变，获取到下个阶段的props
+    componentWillReceiveProps(nextProps){
+     console.log(nextProps);
+    }
+    // 判断是否进入下一个状态，来控制组件更新
+    shouldComponentUpdate(nextProps,nextState){
+        console.log(nextState);
+        return nextProps.persons !== this.props.persons;
+    }
+    // 将要进行渲染
+    componentWillUpdate(nextProps,nextState){
+        console.log(nextProps,nextState)
+    }
+    // 已经渲染完
+    componentDidUpdate(prevProps,prevState){
+        console.log(prevProps,prevState);
+    }
  render(){
      console.log('7')
      return this.props.persons.map((person,index)=>{
@@ -20,7 +38,7 @@ class Persons extends Component{
             name={person.name}
             count = {person.count}
             key={person.id}
-            changed={(event)=>this.props.changed(event,person.id)}
+            changed={(event)=>this.props.changed1(event,person.id)}
      />
  })
 }
