@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Persons from '../component/Person/Persons/Persons';
+import Persons from '../component/Persons/Persons';
 
 class App extends Component {
   //状态，只能在类中使用，并且继承的是react中Component,用于改变组件内状态的值
@@ -48,7 +48,7 @@ class App extends Component {
       showPersons:!doesShow
     })
   }
-  deletePersonHandler(PersonIndex){
+  deletePersonHandler=(PersonIndex)=>{
     // const persons = this.state.persons;
     // 用操作运算符接收数据
     const persons = [...this.state.persons];
@@ -67,7 +67,11 @@ class App extends Component {
     }
     let persons = null;
     if(this.state.showPersons){
-      persons = <Persons/>
+     persons = <Persons 
+                    persons={this.state.persons}
+                    clicked={this.deletePersonHandler}
+                    changed={this.nameChangedHandler}
+                  />
       // ( <div>
       //   {/* 循环遍历 */}
       //   {
