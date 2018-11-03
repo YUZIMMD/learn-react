@@ -4,15 +4,26 @@ import Persons from '../component/Persons/Persons';
 import MyHeader from '../component/Header/Header'
 // 有状态组件
 class App extends Component {
-  //状态，只能在类中使用，并且继承的是react中Component,用于改变组件内状态的值
-  state ={
-    persons:[
-      {id:1,name:'name1',count:1},
-      {id:2,name:'name2',count:2},
-      {id:3,name:'name3',count:3},
-  ],
-  otherState:'anything',
-  showPersons:false
+  // 构造函数自动获取props
+  constructor(props){
+    super(props);
+      //状态，只能在类中使用，并且继承的是react中Component,用于改变组件内状态的值
+    this.state ={
+      persons:[
+        {id:1,name:'name1',count:1},
+        {id:2,name:'name2',count:2},
+        {id:3,name:'name3',count:3},
+    ],
+    otherState:'anything',
+    showPersons:false
+    }
+    console.log('1')
+  }
+  componentWillMount(){
+    console.log('2')
+  }
+  componentDidMount(){
+    console.log('4')
   }
   switchNameHandler=(newName)=>{
     console.log('21321321');
@@ -59,6 +70,7 @@ class App extends Component {
     })
   }
   render() {
+    console.log('3')
     let persons = null;
     if(this.state.showPersons){
      persons = <Persons 
