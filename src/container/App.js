@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Persons from '../component/Persons/Persons';
-import MyHeader from '../component/Header/Header'
+import MyHeader from '../component/Header/Header';
+import Posts from '../component/posts'
 // 有状态组件
 class App extends Component {
   // 构造函数自动获取props
@@ -107,6 +108,7 @@ class App extends Component {
           </div>:null
         } */}
         {persons}
+        <Posts/>
       </div>
     );
   }
