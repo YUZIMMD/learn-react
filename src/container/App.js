@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
+import {Provider} from 'react-redux';
 import Persons from '../component/Persons/Persons';
 import MyHeader from '../component/Header/Header';
 import Posts from '../component/posts'
+import PostForm from '../component/postForm'
+import store from '../store'
 // 有状态组件
 class App extends Component {
   // 构造函数自动获取props
@@ -93,7 +96,9 @@ class App extends Component {
     return (
       // jsx
       // jsx中定义类名：className,在jsx中有且只有一个根容器，有两个同级的根标签会报错
-      <div className="App">
+      // Provider 默认可以拿到state
+      <Provider store={store}>
+        <div className="App">
         {/* <h1>1234</h1> */}
         {/* 如果给方法加()，方法会在加载的时候执行，不管有没有点击按钮 ，传参：1.箭头函数传参2.bind*/}
         {/* <button onClick={()=>this.switchNameHandler("dengyt")}>更改状态值</button> */}
@@ -108,8 +113,10 @@ class App extends Component {
           </div>:null
         } */}
         {persons}
+        <PostForm/>
         <Posts/>
       </div>
+      </Provider>
     );
   }
 }
